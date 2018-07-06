@@ -31,4 +31,16 @@ export class NewsService {
     );
             
   }
+  public getsearchData(keywords:string):Observable<any> {
+    let url = "https://newsapi.org/v2/everything"
+    let urlParms = '?q=' +keywords +'&from=2018-07-06&sortBy=popularity&apiKey=fd2d1977743c453ca1ab1784723afa98';
+
+    return this.http
+      .get(url + urlParms)
+      .pipe(
+        map(this.extractData),
+        catchError(this.handleError)
+    );
+            
+  }
 }

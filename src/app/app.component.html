@@ -4,12 +4,12 @@
   <a href="#contact">Contact</a>
   <div class="topnav-right">
     <form class="form-inline" style="margin:0.5em">
-      <input class="form-control mr-sm-4" type="text" placeholder="Search">
-      <button class="btn btn-success" type="submit">Search</button>
+      <input class="form-control mr-sm-4" type="text" #srchtext id="searchId" name="search" [(ngModel)]="shared_data.searchText" placeholder="Search">
+      <button class="btn btn-success" (click)="searchClicked(srchtext.value)">Search</button>
     </form>
   </div>
 </div>
-
+<div *ngIf="!search_clicked">
 <div class="row card-group">
   <div class="col-4" *ngFor="let article of newsData">
     <div class="card">
@@ -22,4 +22,8 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+<div id="search" *ngIf="search_clicked">
+<app-search></app-search>
 </div>
